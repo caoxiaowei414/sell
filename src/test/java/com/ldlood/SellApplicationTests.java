@@ -13,6 +13,8 @@ public class SellApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		log.info("info");
+		log.error("error");
 	}
 
 }
