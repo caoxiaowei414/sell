@@ -1,18 +1,17 @@
 package com.ldlood.repository;
 
-import com.ldlood.dataobject.OrderMaster;
+import com.ldlood.dataobject.OrderDetail;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-import static org.junit.Assert.*;
 
 /**
  * Created by Ldlood on 2017/7/21.
@@ -21,32 +20,29 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class OrderDetailRepositoryTest {
 
-    @Autowired
-    private OrderMasterRepository repository;
 
-    private final String OPENID = "110110";
+    @Autowired
+    private OrderDetailRepository repository;
 
     @Test
     public void saveTest() {
-        OrderMaster orderMaster = new OrderMaster();
-        orderMaster.setOrderId("1234567");
-        orderMaster.setBuyerName("lolood");
-        orderMaster.setBuyerPhone("18576649086");
-        orderMaster.setBuyerAddress("wuhan hongshanqu");
-        orderMaster.setBuyerOpenid(OPENID);
-        orderMaster.setOrderAmount(new BigDecimal(2.5));
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setDetailId("1234567810");
+        orderDetail.setOrderId("1234567");
+        orderDetail.setProductIcon("http://xxxx.jpg");
+        orderDetail.setProductId("11111112");
+        orderDetail.setProductName("food");
+        orderDetail.setProductPrice(new BigDecimal(2.2));
+        orderDetail.setProductQuantity(3);
 
-        OrderMaster result = repository.save(orderMaster);
+        OrderDetail result = repository.save(orderDetail);
         Assert.assertNotNull(result);
     }
 
     @Test
-    public void findByBuyerOpenid() throws Exception {
-        PageRequest request = new PageRequest(1, 3);
-
-        Page<OrderMaster> result = repository.findByBuyerOpenid(OPENID, request);
-
-        Assert.assertNotEquals(0, result.getTotalElements());
+    public void findByOrderId() throws Exception {
+        List<OrderDetail> orderDetailList = repository.findByOrderId("11111111");
+        Assert.assertNotEquals(0, orderDetailList.size());
     }
 
 }
