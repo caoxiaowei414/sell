@@ -3,6 +3,7 @@ package com.ldlood.dto;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ldlood.dataobject.OrderDetail;
 import com.ldlood.utils.serializer.Date2LongSerializer;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Created by Ldlood on 2017/7/21.
  */
+@Data
 public class OrderDTO {
     /**
      * 订单id.
@@ -64,5 +66,5 @@ public class OrderDTO {
     @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
-    List<OrderDetail> orderDetailList;
+    private List<OrderDetail> orderDetailList;
 }
