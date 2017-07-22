@@ -10,5 +10,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface OrderMasterRepository extends JpaRepository<OrderMaster, String> {
 
+    /**
+     * 通过openid查找订单
+     * @param buyerOpenid
+     * @param pageable
+     * @return
+     */
     Page<OrderMaster> findByBuyerOpenid(String buyerOpenid, Pageable pageable);
 }
