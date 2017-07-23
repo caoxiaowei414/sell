@@ -1,5 +1,6 @@
 package com.ldlood.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ldlood.dataobject.OrderDetail;
 import com.ldlood.utils.serializer.Date2LongSerializer;
