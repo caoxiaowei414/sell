@@ -18,5 +18,11 @@ server:
 #  level:
 #    com.imooc.LoggerTest: debug
 wechat:
-  mpAppId: wx3c93e6e76c50dad0
-  mpAppSecret: d19207a865cc1a73891f2b96cab1c75a
+  #mpAppId: wxd898fcb01713c658
+  #mpAppSecret: d19207a865cc1a73891f2b96cab1c75a
+  mpAppId: wxd898fcb01713c658
+  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
+  mchId: 1409146202
+  mchKey: c976503d34ca432c601361f969fd8d85
+  keyPath: /var/weixin_cert/h5.p12
+  notifyUrl: http://xiazhong.natapp1.cc/sell/pay/notify
