@@ -2,6 +2,7 @@ package com.ldlood.service.impl;
 
 import com.ldlood.dto.OrderDTO;
 import com.ldlood.service.PayService;
+import com.ldlood.utils.JsonUtil;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.PayRequest;
 import com.lly835.bestpay.model.PayResponse;
@@ -31,9 +32,9 @@ public class PayServiceImpl implements PayService {
         payRequest.setOrderId(orderDTO.getOrderId());
         payRequest.setOrderName(ORDER_NAME);
         payRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_H5);
-        log.info("【微信支付】 request={}", payRequest);
+        log.info("【微信支付】 request={}", JsonUtil.toJson(payRequest) );
         PayResponse payResponse = bestPayService.pay(payRequest);
-        log.info("【微信支付】 response={}", payResponse);
+        log.info("【微信支付】 response={}", JsonUtil.toJson(payResponse));
 
     }
 }
