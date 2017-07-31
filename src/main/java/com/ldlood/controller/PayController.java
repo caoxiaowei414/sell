@@ -5,21 +5,27 @@ import com.ldlood.enums.ResultEnum;
 import com.ldlood.exception.SellException;
 import com.ldlood.service.OrderService;
 import com.ldlood.service.PayService;
+import com.ldlood.utils.JsonUtil;
 import com.lly835.bestpay.model.PayResponse;
+import com.lly835.bestpay.service.impl.BestPayServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import sun.rmi.runtime.Log;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Ldlood on 2017/7/23.
  */
 @Controller
-@RequestMapping("/pay")
+//@RequestMapping("/pay")
+@Slf4j
 public class PayController {
 
     @Autowired
@@ -28,20 +34,65 @@ public class PayController {
     @Autowired
     private PayService payService;
 
+    @Autowired
+    private BestPayServiceImpl bestPayService;
+
+
+    /**
+     * 发起支付
+     */
+    @GetMapping(value = "/pay")
+    public ModelAndView pay(@RequestParam("openid") String openid,
+                            Map<String, Object> map) {
+        //1. 查询订单
+
+//        OrderDTO orderDTO = orderService.findOne("1501483321192900989");
+        PageRequest request = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList("o3qUz1GjZY2Gkb6iq3lffx5Zr38w", request);
+        List<OrderDTO> orderDTOList = orderDTOPage.getContent();
+
+        OrderDTO orderDTO = orderDTOList.get(orderDTOPage.getContent().size() - 1);
+        log.info(orderDTO.getBuyerPhone() + "//////////////////////////////////////////////");
+
+        if (orderDTO == null) {
+            throw new SellException(ResultEnum.ORDER_NOT_EX);
+        }
+
+        //2. 发起支付
+        PayResponse payResponse = payService.create(orderDTO);
+
+        map.put("payResponse", payResponse);
+        map.put("returnUrl", "h");
+
+        return new ModelAndView("pay/create", map);
+    }
+
+    /**
+     * 异步回调
+     */
+    @PostMapping("/notify")
+    public void notify(@RequestBody String notifyData) {
+        payService.notify(notifyData);
+
+    }
+
+
     @GetMapping("/create")
     public ModelAndView create(@RequestParam("orderId") String orderId,
                                @RequestParam("returnUrl") String returnUrl,
                                Map<String, Object> map) {
-
-        //查询订单
+        //1. 查询订单
         OrderDTO orderDTO = orderService.findOne(orderId);
         if (orderDTO == null) {
             throw new SellException(ResultEnum.ORDER_NOT_EX);
         }
+
+        //2. 发起支付
         PayResponse payResponse = payService.create(orderDTO);
 
         map.put("payResponse", payResponse);
-        //发起支付
+        map.put("returnUrl", returnUrl);
+
         return new ModelAndView("pay/create", map);
     }
 
