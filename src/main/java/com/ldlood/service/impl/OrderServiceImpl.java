@@ -16,6 +16,7 @@ import com.ldlood.service.OrderService;
 import com.ldlood.service.PayService;
 import com.ldlood.service.ProductService;
 import com.ldlood.utils.KeyUtil;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,6 +123,14 @@ public class OrderServiceImpl implements OrderService {
         List<OrderDTO> orderDTOList = OrderMasterToOrderDTOConverter.convert(orderDTOPage.getContent());
         Page<OrderDTO> dtoPage = new PageImpl<OrderDTO>(orderDTOList, pageable, orderDTOPage.getTotalElements());
         return dtoPage;
+    }
+
+    @Override
+    public Page<OrderDTO> findListAll(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMasterToOrderDTOConverter.convert(orderMasterPage.getContent());
+        return new PageImpl<OrderDTO>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+
     }
 
     @Override
