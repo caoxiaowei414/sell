@@ -6,17 +6,18 @@ import com.ldlood.exception.SellException;
 import com.ldlood.service.OrderService;
 import com.ldlood.service.PayService;
 import com.ldlood.utils.JsonUtil;
+import com.ldlood.utils.MathUtil;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.PayRequest;
 import com.lly835.bestpay.model.PayResponse;
-import com.lly835.bestpay.service.BestPayService;
+
+import com.lly835.bestpay.model.RefundRequest;
+import com.lly835.bestpay.model.RefundResponse;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.criteria.Order;
-import java.math.BigDecimal;
 
 
 /**
@@ -60,7 +61,7 @@ public class PayServiceImpl implements PayService {
             log.error("【微信支付】 异步通知错误,订单不存在，orerid={}", payResponse.getOrderId());
             throw new SellException(ResultEnum.ORDER_NOT_EX);
         }
-        if (orderDTO.getOrderAmount().compareTo(new BigDecimal(payResponse.getOrderAmount())) != 0) {
+        if (!MathUtil.equals(payResponse.getOrderAmount(), orderDTO.getOrderAmount().doubleValue())) {
             log.error("【微信支付】 异步通知错误,订单金额不一致，orerid={},微信通知金额={},订单金额={}",
                     payResponse.getOrderId(),
                     payResponse.getOrderAmount(),
@@ -70,5 +71,18 @@ public class PayServiceImpl implements PayService {
         orderService.paid(orderDTO);
 
         return payResponse;
+    }
+
+    @Override
+    public RefundResponse refund(OrderDTO orderDTO) {
+        RefundRequest refundRequest = new RefundRequest();
+        refundRequest.setOrderId(orderDTO.getOrderId());
+        refundRequest.setOrderAmount(orderDTO.getOrderAmount().doubleValue());
+        refundRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_H5);
+
+        log.info("【微信退款】 request:{}", refundRequest);
+        RefundResponse refundResponse = bestPayService.refund(refundRequest);
+        log.info("【微信退款】 response:{}", refundResponse);
+        return refundResponse;
     }
 }
