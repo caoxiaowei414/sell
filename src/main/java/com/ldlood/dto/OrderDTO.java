@@ -1,8 +1,12 @@
 package com.ldlood.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ldlood.dataobject.OrderDetail;
+import com.ldlood.enums.OrderStatusEnum;
+import com.ldlood.enums.PayStatusEnum;
+import com.ldlood.utils.EnumUtil;
 import com.ldlood.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -68,4 +72,14 @@ public class OrderDTO {
     private Date updateTime;
 
     private List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, PayStatusEnum.class);
+    }
 }
