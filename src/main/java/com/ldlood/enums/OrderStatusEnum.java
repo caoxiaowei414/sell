@@ -21,13 +21,13 @@ public enum OrderStatusEnum implements CodeEnum {
         this.message = message;
     }
 
-    public static OrderStatusEnum getOrderStatusEnum(Integer code) {
-        for (OrderStatusEnum orderStatusEnum : OrderStatusEnum.values()) {
-            if (orderStatusEnum.getCode().equals(code)) {
-                return orderStatusEnum;
-            }
-
-        }
-        return null;
-    }
+//    public static OrderStatusEnum getOrderStatusEnum(Integer code) {
+//        for (OrderStatusEnum orderStatusEnum : OrderStatusEnum.values()) {
+//            if (orderStatusEnum.getCode().equals(code)) {
+//                return orderStatusEnum;
+//            }
+//
+//        }
+//        return null;
+//    }
 }
