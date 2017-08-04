@@ -52,9 +52,18 @@
                             <li>
                                 <a href="#">上一页</a>
                             </li>
-                            <#list   1..orderDTOPage.getTotalPages() as index >
-                                ${index}<br>
-                            </#list>
+                        <#list   1..orderDTOPage.getTotalPages() as index >
+                            <#if currentPage==index>
+                                <li class="disabled">
+                                    <a>${index}</a>
+                                </li>
+                            <#else >
+                                <li>
+                                    <a href="/seller/order/list?page=${index}&size=10">${index}</a>
+                                </li>
+                            </#if>
+
+                        </#list>
                             <li>
                                 <a href="#">下一页</a>
                             </li>
