@@ -3,7 +3,7 @@
 
 <body>
 <div id="wrapper" class="toggled">
-
+<#include "../common/nav.ftl">
 
 <#--主要内容content-->
     <div id="page-content-wrapper">
@@ -36,7 +36,7 @@
                             <td>${orderDTO.getOrderStatusEnum().message}</td>
                             <td>${orderDTO.getPayStatusEnum().message}</td>
                             <td>${orderDTO.createTime}</td>
-                            <td><a>详情</a></td>
+                            <td><a href="/seller/order/detail?orderId=${orderDTO.orderId}">详情</a></td>
                             <td>
                                 <#if orderDTO.getOrderStatusEnum().message == "新订单">
                                     <a href="/seller/order/cancel?orderId=${orderDTO.orderId}">取消</a>
