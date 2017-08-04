@@ -34,6 +34,7 @@ public class SellerOrderController {
         Page<OrderDTO> orderDTOPage = orderService.findListAll(pageRequest);
         map.put("orderDTOPage", orderDTOPage);
 
+
         return new ModelAndView("order/list", map);
 
     }

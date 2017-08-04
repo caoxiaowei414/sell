@@ -33,10 +33,10 @@
                             <td>${orderDTO.buyerPhone}</td>
                             <td>${orderDTO.buyerAddress}</td>
                             <td>${orderDTO.orderAmount}</td>
-                            <td>${orderDTO.orderStatus}</td>
-                            <td>${orderDTO.payStatus}</td>
+                            <td>${orderDTO.getOrderStatusEnum().message}</td>
+                            <td>${orderDTO.getPayStatusEnum().message}</td>
                             <td>${orderDTO.createTime}</td>
-                            <td><a >详情</a></td>
+                            <td><a>详情</a></td>
                             <td>
                                 <a href="">取消</a>
                             </td>
@@ -46,11 +46,24 @@
                     </table>
                 </div>
 
-
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <ul class="pagination pull-right">
+                            <li>
+                                <a href="#">上一页</a>
+                            </li>
+                            <#list   1..orderDTOPage.getTotalPages() as index >
+                                ${index}<br>
+                            </#list>
+                            <li>
+                                <a href="#">下一页</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </body>
 </html>
