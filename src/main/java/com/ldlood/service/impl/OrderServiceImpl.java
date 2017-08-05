@@ -13,6 +13,7 @@ import com.ldlood.exception.SellException;
 import com.ldlood.repository.OrderDetailRepository;
 import com.ldlood.repository.OrderMasterRepository;
 import com.ldlood.service.OrderService;
+import com.ldlood.service.PayService;
 import com.ldlood.service.ProductService;
 import com.ldlood.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +47,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PayService payService;
 
     @Override
     @Transactional
@@ -153,7 +157,7 @@ public class OrderServiceImpl implements OrderService {
 
         //支付成功退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS)) {
-            //TODO 退款
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }

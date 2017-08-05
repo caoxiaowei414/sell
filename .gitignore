@@ -79,3 +79,4 @@ Thumbs.db
 hs_err_pid*
 log/
 .mvn/
+src/main/resources/h5.p12
