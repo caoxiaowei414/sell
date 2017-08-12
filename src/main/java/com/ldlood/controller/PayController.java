@@ -43,15 +43,15 @@ public class PayController {
      */
     @GetMapping(value = "/pay")
     public ModelAndView pay(@RequestParam("openid") String openid,
+                            @RequestParam("orderId") String orderId,
+                            @RequestParam("returnUrl") String returnUrl,
                             Map<String, Object> map) {
+
         //1. 查询订单
-
-//        OrderDTO orderDTO = orderService.findOne("1501483321192900989");
-        PageRequest request = new PageRequest(0, 2);
-        Page<OrderDTO> orderDTOPage = orderService.findList("o3qUz1GjZY2Gkb6iq3lffx5Zr38w", request);
-        List<OrderDTO> orderDTOList = orderDTOPage.getContent();
-
-        OrderDTO orderDTO = orderDTOList.get(orderDTOPage.getContent().size() - 1);
+        OrderDTO orderDTO = orderService.findOne(orderId);
+        if (orderDTO == null) {
+            throw new SellException(ResultEnum.ORDER_NOT_EX);
+        }
         log.info(orderDTO.getBuyerPhone() + "//////////////////////////////////////////////");
 
         if (orderDTO == null) {
@@ -62,7 +62,7 @@ public class PayController {
         PayResponse payResponse = payService.create(orderDTO);
 
         map.put("payResponse", payResponse);
-        map.put("returnUrl", "h");
+        map.put("returnUrl", "http://sell.com/#/order/" + orderId);
 
         return new ModelAndView("pay/create", map);
     }
