@@ -1,25 +1,16 @@
-package com.ldlood.dataobject;
+package com.ldlood.form;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ldlood.enums.ProductStatusEnum;
-import com.ldlood.utils.EnumUtil;
 import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by Ldlood on 2017/7/20.
+ * Created by Ldlood on 2017/8/10.
  */
-@Entity
 @Data
-@DynamicUpdate
-public class ProductInfo {
+public class ProductForm {
 
-    @Id
     private String productId;
 
     /**
@@ -47,10 +38,6 @@ public class ProductInfo {
      */
     private String productIcon;
 
-    /**
-     * 状态, 0正常1下架.
-     */
-    private Integer productStatus = ProductStatusEnum.UP.getCode();
 
     /**
      * 类目编号.
@@ -66,10 +53,4 @@ public class ProductInfo {
      * 更新时间
      */
     private Date updateTime;
-
-    @JsonIgnore
-    public ProductStatusEnum getProductStatusEnum() {
-
-        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
-    }
 }
