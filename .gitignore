@@ -79,3 +79,4 @@ Thumbs.db
 hs_err_pid*
 log/
 .mvn/
+*.p12
