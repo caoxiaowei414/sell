@@ -24,6 +24,8 @@ wechat:
 #  mpAppSecret: d19207a865cc1a73891f2b96cab1c75a
   mpAppId: wxd898fcb01713c658
   mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
+  openAppId: xxxxxxxxxxxxxxxxxx
+  openAppSecret: xxxxxxxxxxxxxxxxxxxxx
   mchId: 1483469312
   mchKey: C5245D70627C1F8E9964D494B0735025
   keyPath:  C:/Users/Hasee/Desktop/SpringBoot_Wechat_Sell/src/main/resources/h5.p12
