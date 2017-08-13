@@ -36,8 +36,8 @@ wechat:
   notifyUrl: http://xiazhong.natapp1.cc/notify
 
 projectUrl:
-  wechatMpAuthorize: http://xiazhong.natapp1.cc/
-  wechatOpenAuthorize: http://xiazhong.natapp1.cc/
+  wechatMpAuthorize: http://xiazhong.natapp1.cc
+  wechatOpenAuthorize: http://xiazhong.natapp1.cc
   sell: http://localhost:8080
 
 
