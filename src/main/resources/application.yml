@@ -8,6 +8,10 @@ spring:
     show-sql: true
   jackson:
     default-property-inclusion: non_null
+  redis:
+    host: 172.20.10.10
+    port: 6379
+    #password:
 server:
   context-path: /
 #  context-path: /sell
@@ -30,5 +34,10 @@ wechat:
   mchKey: C5245D70627C1F8E9964D494B0735025
   keyPath:  C:/Users/Hasee/Desktop/SpringBoot_Wechat_Sell/src/main/resources/h5.p12
   notifyUrl: http://xiazhong.natapp1.cc/notify
+
+projectUrl:
+  wechatMpAuthorize: http://xiazhong.natapp1.cc/
+  wechatOpenAuthorize: http://xiazhong.natapp1.cc/
+  sell: http://localhost:8080
 
 

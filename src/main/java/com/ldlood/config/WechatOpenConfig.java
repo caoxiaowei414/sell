@@ -17,6 +17,8 @@ public class WechatOpenConfig {
     @Autowired
     private WechatAccountConfig wechatAccountConfig;
 
+
+
     @Bean
     public WxMpService wxOpenService() {
         WxMpService wxOpenService = new WxMpServiceImpl();

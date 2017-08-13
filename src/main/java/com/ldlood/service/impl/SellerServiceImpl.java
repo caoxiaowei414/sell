@@ -3,8 +3,9 @@ package com.ldlood.service.impl;
 import com.ldlood.dataobject.SellerInfo;
 import com.ldlood.repository.SellerInfoRepository;
 import com.ldlood.service.SellerService;
-import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 /**
  * Created by Ldlood on 2017/8/10.
@@ -20,3 +21,4 @@ public class SellerServiceImpl implements SellerService {
         return repository.findByOpenid(openid);
     }
 }
+

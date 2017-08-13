@@ -1,5 +1,6 @@
 package com.ldlood.controller;
 
+import com.ldlood.config.ProjectUrlConfig;
 import com.ldlood.enums.ResultEnum;
 import com.ldlood.exception.SellException;
 import lombok.extern.slf4j.Slf4j;
@@ -30,11 +31,14 @@ public class WechatController {
     @Autowired
     private WxMpService wxOpenService;
 
+    @Autowired
+    private ProjectUrlConfig projectUrlConfig;
+
 
     @GetMapping("/authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl) {
         //1 配置
-        String url = "http://xiazhong.natapp1.cc/wechat/userInfo";
+        String url = projectUrlConfig.getWechatMpAuthorize() + "/wechat/userInfo";
         String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_USER_INFO, URLEncoder.encode(returnUrl));
         log.info("[微信网页授权获取 code],resule={}", redirectUrl);
 
@@ -62,7 +66,7 @@ public class WechatController {
     @GetMapping("/qrauthorize")
     public String qrAuthorize(@RequestParam("returnUrl") String returnUrl) {
         //1 配置
-        String url = "http://xiazhong.natapp1.cc/wechat/qruserInfo";
+        String url = projectUrlConfig.getWechatOpenAuthorize() + "/wechat/qruserInfo";
         String redirectUrl = wxOpenService.buildQrConnectUrl(url, WxConsts.QRCONNECT_SCOPE_SNSAPI_LOGIN, URLEncoder.encode(returnUrl));
         log.info("[微信网页登陆获取 code],resule={}", redirectUrl);
 
