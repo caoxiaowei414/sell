@@ -6,17 +6,17 @@ import lombok.Getter;
  * Created by Ldlood on 2017/7/20.
  */
 @Getter
-public enum ProductStatusEnum {
+public enum ProductStatusEnum implements CodeEnum {
 
-    UP(0,"上架"),
-    DOWN(1,"下架")
-    ;
+    UP(0, "上架"),
+    DOWN(1, "下架");
     private Integer code;
 
-    private String mssage;
+    private String message;
 
-    ProductStatusEnum(Integer code, String mssage) {
+    ProductStatusEnum(Integer code, String message) {
         this.code = code;
-        this.mssage = mssage;
+        this.message = message;
     }
 }
+
