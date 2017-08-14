@@ -24,16 +24,19 @@ server:
 #    com.imooc.LoggerTest: debug
 wechat:
   # 微信授权 id
-#  mpAppId: wx3c93e6e76c50dad0
-#  mpAppSecret: d19207a865cc1a73891f2b96cab1c75a
-  mpAppId: wxd898fcb01713c658
-  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
+  mpAppId: wx0465fe3767346d03
+  mpAppSecret: 98f3f91786611085871483c1b799aaf5
+#  mpAppId: wxd898fcb01713c658
+#  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
   openAppId: xxxxxxxxxxxxxxxxxx
   openAppSecret: xxxxxxxxxxxxxxxxxxxxx
   mchId: 1483469312
   mchKey: C5245D70627C1F8E9964D494B0735025
   keyPath:  C:/Users/Hasee/Desktop/SpringBoot_Wechat_Sell/src/main/resources/h5.p12
   notifyUrl: http://xiazhong.natapp1.cc/notify
+  templateId:
+    orderStatus: kahmCfZjV-2jORZ4yFti9-69smaV3gQ1lFFCDKL_vjI
+    payStatus: kahmCfZjV-2jORZ4yFti9-69smaV3gQ1lFFCDKL_vjI
 
 projectUrl:
   wechatMpAuthorize: http://xiazhong.natapp1.cc

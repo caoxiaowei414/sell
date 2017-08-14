@@ -26,12 +26,14 @@ public class PushMessageServiceImpl implements PushMessageService {
     @Autowired
     private WechatAccountConfig accountConfig;
 
+    @Autowired
+    private WechatAccountConfig wechatAccountConfig;
 
     @Override
     public void orderStatus(OrderDTO orderDTO) {
         WxMpTemplateMessage wxMpTemplateMessage = new WxMpTemplateMessage();
-        wxMpTemplateMessage.setTemplateId("kahmCfZjV-2jORZ4yFti9-69smaV3gQ1lFFCDKL_vjI");
-        wxMpTemplateMessage.setToUser("oBdFJwMkg_zNhATvSJ95bCt5FkQw");
+        wxMpTemplateMessage.setTemplateId(wechatAccountConfig.getTemplateId().get("orderStatus"));
+        wxMpTemplateMessage.setToUser(orderDTO.getBuyerOpenid());
 
         List<WxMpTemplateData> data = Arrays.asList(
                 new WxMpTemplateData("first", "亲，请记得收货。"),

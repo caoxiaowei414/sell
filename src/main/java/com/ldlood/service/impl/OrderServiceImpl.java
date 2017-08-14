@@ -15,6 +15,7 @@ import com.ldlood.repository.OrderMasterRepository;
 import com.ldlood.service.OrderService;
 import com.ldlood.service.PayService;
 import com.ldlood.service.ProductService;
+import com.ldlood.service.PushMessageService;
 import com.ldlood.utils.KeyUtil;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
 
     @Override
     @Transactional
@@ -190,6 +194,7 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
 
+        pushMessageService.orderStatus(orderDTO);
         return orderDTO;
     }
 
