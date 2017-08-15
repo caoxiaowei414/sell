@@ -9,13 +9,11 @@ import com.ldlood.dto.OrderDTO;
 import com.ldlood.enums.OrderStatusEnum;
 import com.ldlood.enums.PayStatusEnum;
 import com.ldlood.enums.ResultEnum;
+import com.ldlood.exception.ResponseBankException;
 import com.ldlood.exception.SellException;
 import com.ldlood.repository.OrderDetailRepository;
 import com.ldlood.repository.OrderMasterRepository;
-import com.ldlood.service.OrderService;
-import com.ldlood.service.PayService;
-import com.ldlood.service.ProductService;
-import com.ldlood.service.PushMessageService;
+import com.ldlood.service.*;
 import com.ldlood.utils.KeyUtil;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.extern.slf4j.Slf4j;
@@ -56,6 +54,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private PushMessageService pushMessageService;
 
+    @Autowired
+    private WebSocket webSocket;
+
     @Override
     @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
@@ -68,6 +69,7 @@ public class OrderServiceImpl implements OrderService {
             ProductInfo productInfo = productService.findOne(orderDetail.getProductId());
             if (productInfo == null) {
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXI);
+//                throw  new ResponseBankException();
             }
             //2. 计算订单总价
             orderAmount = productInfo.getProductPrice()
@@ -95,6 +97,8 @@ public class OrderServiceImpl implements OrderService {
 
         productService.decreaseStock(cartDTOList);
 
+        // 发送websocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 

@@ -1,10 +1,12 @@
 package com.ldlood.utils;
 
 import com.ldlood.VO.ResultVO;
+import lombok.Getter;
 
 /**
  * Created by Ldlood on 2017/7/21.
  */
+
 public class ResultVOUtil {
 
     public static ResultVO success(Object object) {

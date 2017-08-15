@@ -1,10 +1,12 @@
 package com.ldlood.exception;
 
 import com.ldlood.enums.ResultEnum;
+import lombok.Getter;
 
 /**
  * Created by Ldlood on 2017/7/22.
  */
+@Getter
 public class SellException extends RuntimeException {
 
     private Integer code;
