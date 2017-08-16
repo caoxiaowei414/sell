@@ -45,6 +45,9 @@ projectUrl:
 logging:
   level:
     com.ldlood.dataobject.mapper: trace
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
 
 
 
