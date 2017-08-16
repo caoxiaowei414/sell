@@ -42,5 +42,10 @@ projectUrl:
   wechatMpAuthorize: http://xiazhong.natapp1.cc
   wechatOpenAuthorize: http://xiazhong.natapp1.cc
   sell: http://localhost:8080
+logging:
+  level:
+    com.ldlood.dataobject.mapper: trace
+
+
 
 

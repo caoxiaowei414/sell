@@ -37,7 +37,6 @@ public class PayController {
     @Autowired
     private BestPayServiceImpl bestPayService;
 
-
     /**
      * 发起支付
      */
