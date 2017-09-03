@@ -10,8 +10,10 @@ import com.ldlood.dataobject.ProductInfo;
 import com.ldlood.utils.ResultVOUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -34,7 +36,8 @@ public class BuyerProductController {
 
 
     @GetMapping("/list")
-    public ResultVO list() {
+    @Cacheable(cacheNames = "product", key = "#sellerid", condition = "#sellerid.length()>10", unless = "#result.getCode() !=0")
+    public ResultVO list(@RequestParam(value = "sellerid", required = false) String sellerid) {
 
         //查询上架的商品
         List<ProductInfo> productInfoList = productService.findUpAll();

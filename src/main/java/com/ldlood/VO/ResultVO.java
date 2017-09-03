@@ -2,12 +2,15 @@ package com.ldlood.VO;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * Created by Ldlood on 2017/7/21.
  */
 @Data
-public class ResultVO<T> {
+public class ResultVO<T> implements Serializable {
 
+    private static final long serialVersionUID = 3236329195874147801L;
     /** 错误码. */
     private Integer code;
 
