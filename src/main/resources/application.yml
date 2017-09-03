@@ -24,10 +24,10 @@ server:
 #    com.imooc.LoggerTest: debug
 wechat:
   # 微信授权 id
-  mpAppId: wx0465fe3767346d03
-  mpAppSecret: 98f3f91786611085871483c1b799aaf5
-#  mpAppId: wxd898fcb01713c658
-#  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
+#  mpAppId: wx0465fe3767346d03
+#  mpAppSecret: 98f3f91786611085871483c1b799aaf5
+  mpAppId: wxd898fcb01713c658
+  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
   openAppId: xxxxxxxxxxxxxxxxxx
   openAppSecret: xxxxxxxxxxxxxxxxxxxxx
   mchId: 1483469312
