@@ -5,19 +5,6 @@
 还有 项目中的支付 授权 退款，请使用自己的appid
 微信授权可以自己注册测试号 ，但是微信支付必须是企业号，个人没法注册。
 
-## 前端代码运行方式
-``` 
-#安装依赖包
-npm install
-
-#运行项目 
-npm run dev  
-
-#打包
-npm run build
-
-#最后部署dist文件到nginx/iis/apache  推荐使用nginx 
-``` 
 
 ## 技术点
 * Spring Boot
@@ -27,6 +14,8 @@ npm run build
 * 微信消息推送
 * 微信支付与退款
 * Spring Boot + WebSocket 
+* 前后端分离
+* Vue.js
 
 ## Sql语句
 ``` sql
@@ -99,5 +88,21 @@ create table `seller_info` (
     primary key (`id`)
 ) comment '卖家信息表';
 ```
+
+## 前端代码运行方式
+``` 
+#安装依赖包
+npm install
+
+#运行项目 
+npm run dev  
+
+#打包
+npm run build
+
+#最后部署dist文件到nginx/iis/apache  推荐使用nginx 
+``` 
+## 项目部署流程
+
 
 ## 老铁 如果项目对你有任何一点帮助的话 请给个star
