@@ -103,6 +103,8 @@ npm run build
 #最后部署dist文件到nginx/iis/apache  推荐使用nginx 
 ``` 
 ## 项目部署流程
+- 首先将打包后的前端代码部署到Nginx
+- 将前端代码和后端接口联通
 
 
 ## 老铁 如果项目对你有任何一点帮助的话 请给个star
